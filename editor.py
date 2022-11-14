@@ -7,7 +7,7 @@ import os
 import os.path
 
 
-def edit_img(text):
+def edit_img(text, celebration_settings):
     phraseTop = 'С днем'
     phraseBottom = text
 
@@ -15,17 +15,19 @@ def edit_img(text):
     width, height = img.size
     I1 = ImageDraw.Draw(img)
 
+    font_settings = celebration_settings['font']
+
     fontsize = 1
     img_fraction = 0.70
     font = ImageFont.truetype(
-        'Fonts/TOYZ.ttf', size=fontsize, encoding='UTF-8')
+        f'Fonts/{font_settings}.ttf', size=fontsize, encoding='UTF-8')
     while font.getsize(phraseBottom)[0] < img_fraction*img.size[0]:
         fontsize += 1
         font = ImageFont.truetype(
-            'Fonts/TOYZ.ttf', size=fontsize, encoding='UTF-8')
+            f'Fonts/{font_settings}.ttf', size=fontsize, encoding='UTF-8')
     fontsize -= 1
     font = ImageFont.truetype(
-        'Fonts/TOYZ.ttf', size=fontsize, encoding='UTF-8')
+        f'Fonts/{font_settings}.ttf', size=fontsize, encoding='UTF-8')
 
     wTop, hTop = I1.textsize(phraseTop, font=font)
     wBottom, hBottom = I1.textsize(phraseBottom, font=font)

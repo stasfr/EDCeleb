@@ -90,13 +90,13 @@ def open_settings(message):
 @bot.message_handler(content_types=['text'])
 def send_meme(message):
     global is_second_tm
+    global celebration_settings
     if is_second_tm:
         is_second_tm = False
         bot.send_photo(message.chat.id,
-                       photo=editor.edit_img(message.text))
+                       photo=editor.edit_img(message.text, celebration_settings))
 
 
-# answer_callback_query - уведомления на экран, использую для подтверждения изменния настроек
 @bot.callback_query_handler(func=lambda call: True)
 def callback_query(call):
     global celebration_settings
